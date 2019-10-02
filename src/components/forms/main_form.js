@@ -14,11 +14,11 @@ class MainForm extends Component {
       <View style={container}>
         <View style={styles.mainFormContend}>
 
-          {/* <View style={styles.topMenu}>
-         <View  style={styles.topMenuAppTitle}>
-           <Text style={styles.topMenuAppTitleText}>+ Saúde</Text>
-         </View>
-</View> */}
+          <View style={styles.topMenu}>
+            <View style={styles.topMenuAppTitle}>
+              <Text style={styles.topMenuAppTitleText}>+ Saúde</Text>
+            </View>
+          </View> 
 
 
 
