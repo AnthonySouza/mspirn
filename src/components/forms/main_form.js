@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, ToolbarAndroid, Image, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, Button, Image, Dimensions } from 'react-native'
+import { Header } from 'react-native-elements';
 import PropTypes from 'prop-types'
 /**
 * @author Antonio Souza
@@ -13,12 +14,20 @@ class MainForm extends Component {
     return (
       <View style={container}>
         <View style={styles.mainFormContend}>
-
-          <View style={styles.topMenu}>
-            <View style={styles.topMenuAppTitle}>
-              <Text style={styles.topMenuAppTitleText}>+ Saúde</Text>
-            </View>
-          </View> 
+          <Header
+            statusBarProps={{ barStyle: 'light-content', backgroundColor: '#8000FF' }}
+            barStyle="light-content" // or directly
+            centerComponent={{ text: '+ Saúde', style: { 
+              fontFamily: 'Manjari Regular',
+              fontSize: 50, 
+              color: '#fff',
+              marginTop: -15
+            }}}
+            containerStyle={{
+              backgroundColor: '#8000FF',
+              justifyContent: 'space-around',
+            }}
+          />
 
 
 
@@ -26,9 +35,9 @@ class MainForm extends Component {
 
         <View style={styles.actionButtons}>
 
-          <TouchableOpacity style={styles.actionButton}>
+          {/* <TouchableOpacity style={styles.actionButton}>
 
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
         </View>
 
@@ -53,11 +62,6 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#6000BF',
     elevation: 8
-  },
-  topMenuAppTitleText: {
-    color: '#fff',
-    fontFamily: 'Manjari Regular',
-    fontSize: 40
   },
   actionButtons: {
 
