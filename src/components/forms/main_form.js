@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button, Image, Dimensions } from 'react-native'
-import { Header } from 'react-native-elements';
+import { Header, ListItem } from 'react-native-elements';
 import PropTypes from 'prop-types'
+
+import AppSettings from '../settings/app_settings'
+
+import { APP_DEFAULT_COLOR_1, APP_STATUS_BAR_COLOR_2, APP_TEXT_COLOR_WHITE } from '../settings/app_settings';
+
 /**
 * @author Antonio Souza
 * @class MainForm
@@ -15,23 +20,28 @@ class MainForm extends Component {
       <View style={container}>
         <View style={styles.mainFormContend}>
           <Header
-            statusBarProps={{ barStyle: 'light-content', backgroundColor: '#8000FF' }}
+            statusBarProps={{ barStyle: 'light-content', backgroundColor: APP_STATUS_BAR_COLOR_2 }}
             barStyle="light-content" // or directly
             centerComponent={{ text: '+ Saúde', style: { 
               fontFamily: 'Manjari Regular',
               fontSize: 50, 
-              color: '#fff',
+              color: APP_TEXT_COLOR_WHITE,
               marginTop: -15
             }}}
             containerStyle={{
-              backgroundColor: '#8000FF',
+              backgroundColor: APP_DEFAULT_COLOR_1,
               justifyContent: 'space-around',
+              elevation: 8
             }}
+            leftComponent={{ icon: 'menu', color: '#fff' }}
+            rightComponent={{ icon: 'home', style: { color: '#fff' } }}
           />
 
 
 
         </View>
+
+
 
         <View style={styles.actionButtons}>
 
