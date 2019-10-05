@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, Image, Dimensions } from 'react-native'
-import { Header, ListItem } from 'react-native-elements';
+import { View, Text, StyleSheet, Button, Image, Dimensions, StatusBar } from 'react-native'
+import { Header, ListItem, Card } from 'react-native-elements';
 import PropTypes from 'prop-types'
 
 import AppSettings from '../settings/app_settings'
@@ -19,35 +19,23 @@ class MainForm extends Component {
     return (
       <View style={container}>
         <View style={styles.mainFormContend}>
-          <Header
-            statusBarProps={{ barStyle: 'light-content', backgroundColor: APP_STATUS_BAR_COLOR_2 }}
-            barStyle="light-content" // or directly
-            centerComponent={{ text: '+ Saúde', style: { 
-              fontFamily: 'Manjari Regular',
-              fontSize: 50, 
-              color: APP_TEXT_COLOR_WHITE,
-              marginTop: -15
-            }}}
-            containerStyle={{
-              backgroundColor: APP_DEFAULT_COLOR_1,
-              justifyContent: 'space-around',
-              elevation: 8
-            }}
-            leftComponent={{ icon: 'menu', color: '#fff' }}
-            rightComponent={{ icon: 'home', style: { color: '#fff' } }}
-          />
+          <StatusBar backgroundColor={APP_DEFAULT_COLOR_1} barStyle="dark-content" />
 
-
-
+          <View style={styles.topMenu}>
+            <View style={styles.topMenuIconContend}>
+              <Image style={styles.topMenuIcon} source={require('../resources/images/user.png')} />
+            </View>
+            <View style={styles.topMenuTitleContend}>
+              <Text style={styles.topMenuAppTitle} >+ Saúde</Text>
+            </View>
+            <View style={styles.topMenuConfigButtonContend}>
+              <Image style={styles.topMenuConfigButtonIcon} source={require('../resources/images/settings.png')} />
+            </View>
+          </View>
         </View>
-
-
-
         <View style={styles.actionButtons}>
 
-          {/* <TouchableOpacity style={styles.actionButton}>
-
-          </TouchableOpacity> */}
+        
 
         </View>
 
@@ -65,16 +53,49 @@ const styles = StyleSheet.create({
 
   },
   topMenu: {
-    position: 'absolute',
+    position: 'relative',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent:  'center',
+    flexDirection: 'row',
     height: 70,
     width: '100%',
-    backgroundColor: '#6000BF',
-    elevation: 8
+    backgroundColor: APP_DEFAULT_COLOR_1,
+    padding: 25
+  },
+  topMenuIcon: {
+    position: 'relative',
+    height: 45,
+    width: 45
+  },
+  topMenuConfigButtonIcon: {
+    position: 'relative',
+    height: 35,
+    width: 35
+  },
+  topMenuAppTitle: {
+    fontSize: 40,
+    marginTop: 5,
+    fontFamily: 'Lobster Regular',
+    color: APP_TEXT_COLOR_WHITE
+  },
+  topMenuIconContend: {
+    position: 'relative',
+    flex: 1.3
+  },
+  topMenuTitleContend: {
+    position: 'relative',
+    alignItems: 'baseline',
+    justifyContent:  'center',
+    height: '100%',
+    flex: 5
+  },
+  topMenuConfigButtonContend: {
+    position: 'relative',
+    flex: 1
   },
   actionButtons: {
-
+    position: 'relative',
+    height: '90%'
   },
   actionButton: {
 

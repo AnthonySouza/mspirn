@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { TextInputMask } from 'react-native-masked-text'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert, Button, StatusBar, Image } from 'react-native'
 import PropTypes from 'prop-types'
-
+import { CheckBox } from 'react-native-elements'
 
 
 /**
@@ -39,7 +39,7 @@ class LoginForm extends Component {
                   }}
 
                   ref={(ref) => this.cpfField = ref}
-                  //onSubmitEditing={() => verifyCpf()}
+                //onSubmitEditing={() => verifyCpf()}
                 />
               </View>
               <View style={styles.input}>
@@ -51,6 +51,8 @@ class LoginForm extends Component {
                   placeholder='Digite o número SUS'
                   placeholderTextColor='#c7c7c7' />
               </View>
+
+
               <TouchableOpacity style={styles.buttonNext} >
                 <Text style={styles.buttonNextText}>Continuar</Text>
               </TouchableOpacity>
@@ -59,7 +61,6 @@ class LoginForm extends Component {
               </TouchableOpacity>
             </View>
             <View style={styles.bottomPanel}>
-
             </View>
           </View>
         </KeyboardAvoidingView>
