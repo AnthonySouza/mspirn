@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, Image, Dimensions, StatusBar } from 'react-native'
-import { Header, ListItem, Card } from 'react-native-elements';
-import PropTypes from 'prop-types'
+import { View, Text, StyleSheet, Image, Dimensions, StatusBar } from 'react-native'
+import { Container, Header, Title, Button } from 'native-base';
 
-import AppSettings from '../settings/app_settings'
+import PropTypes from 'prop-types'
 
 import { APP_DEFAULT_COLOR_1, APP_STATUS_BAR_COLOR_2, APP_TEXT_COLOR_WHITE } from '../settings/app_settings';
 
@@ -19,25 +18,23 @@ class MainForm extends Component {
     return (
       <View style={container}>
         <View style={styles.mainFormContend}>
-          <StatusBar backgroundColor={APP_DEFAULT_COLOR_1} barStyle="dark-content" />
-
-          <View style={styles.topMenu}>
-            <View style={styles.topMenuIconContend}>
+          <Header style={styles.topMenu}>
+            <StatusBar backgroundColor={APP_STATUS_BAR_COLOR_2} barStyle="dark-content" hasTabs />
+            <Button style={styles.topMenuUserButtonIcon} transparent>
               <Image style={styles.topMenuIcon} source={require('../resources/images/user.png')} />
-            </View>
-            <View style={styles.topMenuTitleContend}>
-              <Text style={styles.topMenuAppTitle} >+ Saúde</Text>
-            </View>
-            <View style={styles.topMenuConfigButtonContend}>
-              <Image style={styles.topMenuConfigButtonIcon} source={require('../resources/images/settings.png')} />
-            </View>
+            </Button>
+
+            <Title style={styles.topMenuAppTitle}>+ Saúde</Title>
+
+            <Button style={styles.topMenuConfigButtonIcon} transparent>
+              {/* <Image style={styles.topMenuIcon} source={require('../resources/images/menu.png')} /> */}
+            </Button>
+          </Header>
+          <View style={styles.container}>
           </View>
-        </View>
-        <View style={styles.actionButtons}>
-
-        
 
         </View>
+
 
       </View>
     )
@@ -54,18 +51,20 @@ const styles = StyleSheet.create({
   },
   topMenu: {
     position: 'relative',
-    alignItems: 'center',
-    justifyContent:  'center',
-    flexDirection: 'row',
-    height: 70,
-    width: '100%',
     backgroundColor: APP_DEFAULT_COLOR_1,
-    padding: 25
+    justifyContent: 'space-between',
+    paddingLeft: 15,
+    paddingRight: 15
   },
   topMenuIcon: {
     position: 'relative',
-    height: 45,
-    width: 45
+    height: 40,
+    width: 40
+  },
+  topMenuUserButtonIcon: {
+    position: 'relative',
+    height: 35,
+    width: 35
   },
   topMenuConfigButtonIcon: {
     position: 'relative',
@@ -74,31 +73,10 @@ const styles = StyleSheet.create({
   },
   topMenuAppTitle: {
     fontSize: 40,
-    marginTop: 5,
     fontFamily: 'Lobster Regular',
-    color: APP_TEXT_COLOR_WHITE
-  },
-  topMenuIconContend: {
-    position: 'relative',
-    flex: 1.3
-  },
-  topMenuTitleContend: {
-    position: 'relative',
-    alignItems: 'baseline',
-    justifyContent:  'center',
-    height: '100%',
-    flex: 5
-  },
-  topMenuConfigButtonContend: {
-    position: 'relative',
-    flex: 1
-  },
-  actionButtons: {
-    position: 'relative',
-    height: '90%'
-  },
-  actionButton: {
-
+    color: APP_TEXT_COLOR_WHITE,
+    height: 40,
+    alignSelf: 'center'
   }
 })
 export default MainForm
