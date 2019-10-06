@@ -1,21 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, Dimensions, PixelRatio, StatusBar } from 'react-native'
-import { Content, Header, Title, Button, Card, CardItem } from 'native-base';
+import { Content, Header, Title, Button, Card, CardItem, Container, Drawer } from 'native-base';
 import Touchable from 'react-native-platform-touchable';
-
 import PropTypes from 'prop-types'
 
 import { APP_DEFAULT_COLOR_1, APP_STATUS_BAR_COLOR_2, APP_TEXT_COLOR_WHITE } from '../settings/app_settings';
-
-const widthPercentageToDP = widthPercent => {
-  const screenWidth = Dimensions.get('window').width;
-  return PixelRatio.roundToNearestPixel(screenWidth * parseFloat(widthPercent) / 100);
-};
-
-const heightPercentageToDP = heightPercent => {
-  const screenHeight = Dimensions.get('window').height;
-  return PixelRatio.roundToNearestPixel(screenHeight * parseFloat(heightPercent) / 100);
-};
 
 /**
 * @author Antonio Souza
@@ -27,11 +16,11 @@ class MainForm extends Component {
   render() {
     const { container } = styles
     return (
-      <View style={container}>
+      <Container style={container}>
         <View style={styles.mainFormContent}>
           <Header style={styles.topMenu}>
             <StatusBar backgroundColor={APP_STATUS_BAR_COLOR_2} barStyle="dark-content" hasTabs />
-            <Button style={styles.topMenuUserButtonIcon} transparent>
+            <Button onPress={() => this.props.navigation.navigate("Detail")}  style={styles.topMenuUserButtonIcon} transparent>
               <Image style={styles.topMenuIcon} source={require('../resources/images/user.png')} />
             </Button>
 
@@ -109,9 +98,12 @@ class MainForm extends Component {
         </View>
 
 
-      </View>
+      </Container>
     )
   }
+
+// FUNCTIONS
+
 }
 
 
