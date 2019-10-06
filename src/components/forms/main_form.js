@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, Dimensions, PixelRatio, StatusBar } from 'react-native'
-import { Content, Header, Title, Button, Card, CardItem, Container, Drawer } from 'native-base';
+import { View, Text, StyleSheet, Image, Dimensions, PixelRatio, StatusBar, Menu } from 'react-native'
+import { Content, Header, Title, Button, Card, CardItem, Container, Drawer, Body, Icon, Left, Right, List, ListItem, Separator, Switch } from 'native-base';
 import Touchable from 'react-native-platform-touchable';
+import Sidebar from 'react-native-sidebar';
 import PropTypes from 'prop-types'
 
+import { MainFormLeftSideBarList } from './components/main_form_left_sidebar_list'
 import { APP_DEFAULT_COLOR_1, APP_STATUS_BAR_COLOR_2, APP_TEXT_COLOR_WHITE } from '../settings/app_settings';
 
 /**
@@ -16,93 +18,211 @@ class MainForm extends Component {
   render() {
     const { container } = styles
     return (
-      <Container style={container}>
-        <View style={styles.mainFormContent}>
-          <Header style={styles.topMenu}>
-            <StatusBar backgroundColor={APP_STATUS_BAR_COLOR_2} barStyle="dark-content" hasTabs />
-            <Button onPress={() => this.props.navigation.navigate("Detail")}  style={styles.topMenuUserButtonIcon} transparent>
-              <Image style={styles.topMenuIcon} source={require('../resources/images/user.png')} />
-            </Button>
-
-            <Title style={styles.topMenuAppTitle}>+ Saúde</Title>
-
-            <Button style={styles.topMenuConfigButtonIcon} transparent>
-              {/* <Image style={styles.topMenuIcon} source={require('../resources/images/menu.png')} /> */}
-            </Button>
-          </Header>
-          <View style={styles.collumnCard}>
-
-            <View style={styles.rowCard}>
-              <Touchable foreground={Touchable.Ripple(styles.cardButton1.backgroundColor)} style={styles.touchable}>
-                <Card style={styles.cardButton1}>
-                  <CardItem style={styles.cardIconItemContent} backgroundColor={styles.cardButton1.backgroundColor}>
-                    <Image style={styles.cardIconItem} source={require('../resources/images/calendar.png')} resizeMode='center' />
-                  </CardItem>
-                  <CardItem style={styles.cardTextItemContent} backgroundColor={styles.cardButton1.backgroundColor}>
-                    <Text styles={styles.cardText}>Consulta</Text>
-                  </CardItem>
-                </Card>
+      <Sidebar
+        leftSidebar={
+          <View>
+            <View style={styles.leftViewAppName}>
+              <Text style={styles.leftViewAppNameText}>+ Saúde</Text>
+            </View>
+            <List containerStyle={{
+              marginBottom: 20
+            }}>
+              <Separator style={styles.listSeparator} bordered>
+              </Separator>
+              <Touchable foreground={Touchable.Ripple('#000')}>
+                <ListItem button={true}onPress={() => console.warn("new event press")} icon backgroundColor={'#fff'}>
+                  <Left>
+                    <View>
+                      <Image style={styles.leftMenuIcon} source={require('../resources/images/user.png')} />
+                    </View>
+                  </Left>
+                  <Body>
+                    <Text style={styles.listText}>Dados Pessoais</Text>
+                  </Body>
+                  <Right>
+                    <Icon active name="arrow-forward" />
+                  </Right>
+                </ListItem>
               </Touchable>
 
-              {/* BOTÃO AGENDAMENTO */}
-              <Touchable foreground={Touchable.Ripple(styles.cardButton2.backgroundColor)} style={styles.touchable}>
-                <Card style={styles.cardButton2}>
-                  <CardItem style={styles.cardTitleContent} backgroundColor={styles.cardButton2.backgroundColor}>
-                    <Text style={styles.cardTitle}>Agendar</Text>
-                  </CardItem>
-                  <CardItem style={styles.cardIconItemContent} backgroundColor={styles.cardButton2.backgroundColor}>
-                     <Image style={styles.cardIconItem} source={require('../resources/images/calendar.png')} resizeMode='center' />
-                  </CardItem>
-                  <CardItem style={styles.cardInfoContent} backgroundColor={styles.cardButton2.backgroundColor}>
-                    <Text style={styles.cardInfo}>Faça uma consulta  com  data e hora marcadas.</Text>
-                  </CardItem>
-                </Card>
+              <Touchable foreground={Touchable.Ripple('#000')}>
+                <ListItem button={true}onPress={() => console.warn("new event press")} icon backgroundColor={'#fff'}>
+                  <Left>
+                    <View>
+                      <Image style={styles.leftMenuIcon} source={require('../resources/images/calendar.png')} />
+                    </View>
+                  </Left>
+                  <Body>
+                    <Text style={styles.listText}>Consultas Agendadas</Text>
+                  </Body>
+                  <Right>
+                    <Icon active name="arrow-forward" />
+                  </Right>
+                </ListItem>
               </Touchable>
+
+              <Separator style={styles.listSeparator} bordered>
+                {/* <Text style={styles.listSeparatorText}>Usuário</Text> */}
+              </Separator>
+
+              <Touchable foreground={Touchable.Ripple('#000')}>
+                <ListItem button={true}onPress={() => console.warn("new event press")} icon backgroundColor={'#fff'}>
+                  <Left>
+                    <View>
+                      <Image style={styles.leftMenuIcon} source={require('../resources/images/qr-code.png')} />
+                    </View>
+                  </Left>
+                  <Body>
+                    <Text style={styles.listText}>Ler Código QR</Text>
+                  </Body>
+                  <Right>
+                    <Icon active name="arrow-forward" />
+                  </Right>
+                </ListItem>
+              </Touchable>
+
+              <Touchable foreground={Touchable.Ripple('#000')}>
+                <ListItem button={true}onPress={() => console.warn("new event press")} icon backgroundColor={'#fff'}>
+                  <Left>
+                    <View>
+                      <Image style={styles.leftMenuIcon} source={require('../resources/images/route.png')} />
+                    </View>
+                  </Left>
+                  <Body>
+                    <Text style={styles.listText}>Localização</Text>
+                  </Body>
+                  <Right>
+                    <Icon active name="arrow-forward" />
+                  </Right>
+                </ListItem>
+              </Touchable>
+
+              <Touchable foreground={Touchable.Ripple('#000')}>
+                <ListItem button={true}onPress={() => console.warn("new event press")} icon backgroundColor={'#fff'}>
+                  <Left>
+                    <View>
+                      <Image style={styles.leftMenuIcon} source={require('../resources/images/smartphone.png')} />
+                    </View>
+                  </Left>
+                  <Body>
+                    <Text style={styles.listText}>Notificações</Text>
+                  </Body>
+                  <Right>
+                    <Icon active name="arrow-forward" />
+                  </Right>
+                </ListItem>
+              </Touchable>
+
+              <Touchable foreground={Touchable.Ripple('#000')}>
+                <ListItem button={true}onPress={() => console.warn("new event press")} icon backgroundColor={'#fff'}>
+                  <Left>
+                    <View>
+                      <Image style={styles.leftMenuIcon} source={require('../resources/images/settings.png')} />
+                    </View>
+                  </Left>
+                  <Body>
+                    <Text style={styles.listText}>Configurações</Text>
+                  </Body>
+                  <Right>
+                    <Icon active name="arrow-forward" />
+                  </Right>
+                </ListItem>
+              </Touchable>
+
+            </List>
+          </View>
+        }
+        style={styles.leftSideBar}>
+        <Container style={container}>
+          <View style={styles.mainFormContent}>
+            <Header style={styles.topMenu}>
+              <StatusBar backgroundColor={APP_STATUS_BAR_COLOR_2} barStyle="dark-content" hasTabs />
+              <Button onPress={
+                () => console.log('SideMenu oppened')
+              } style={styles.topMenuUserButtonIcon} transparent>
+                <Image style={styles.topMenuIcon} source={require('../resources/images/user.png')} />
+              </Button>
+
+              <Title style={styles.topMenuAppTitle}>+ Saúde</Title>
+
+              <Button style={styles.topMenuConfigButtonIcon} transparent>
+                {/* <Image style={styles.topMenuIcon} source={require('../resources/images/menu.png')} /> */}
+              </Button>
+            </Header>
+            <View style={styles.collumnCard}>
+
+              <View style={styles.rowCard}>
+                <Touchable foreground={Touchable.Ripple(styles.cardButton1.backgroundColor)} style={styles.touchable}>
+                  <Card style={styles.cardButton1}>
+                    <CardItem style={styles.cardIconItemContent} backgroundColor={styles.cardButton1.backgroundColor}>
+                      <Image style={styles.cardIconItem} source={require('../resources/images/calendar.png')} resizeMode='center' />
+                    </CardItem>
+                    <CardItem style={styles.cardTextItemContent} backgroundColor={styles.cardButton1.backgroundColor}>
+                      <Text styles={styles.cardText}>Consulta</Text>
+                    </CardItem>
+                  </Card>
+                </Touchable>
+
+                {/* BOTÃO AGENDAMENTO */}
+                <Touchable foreground={Touchable.Ripple(styles.cardButton2.backgroundColor)} style={styles.touchable}>
+                  <Card style={styles.cardButton2}>
+                    <CardItem style={styles.cardTitleContent} backgroundColor={styles.cardButton2.backgroundColor}>
+                      <Text style={styles.cardTitle}>Agendar</Text>
+                    </CardItem>
+                    <CardItem style={styles.cardIconItemContent} backgroundColor={styles.cardButton2.backgroundColor}>
+                      <Image style={styles.cardIconItem} source={require('../resources/images/calendar.png')} resizeMode='center' />
+                    </CardItem>
+                    <CardItem style={styles.cardInfoContent} backgroundColor={styles.cardButton2.backgroundColor}>
+                      <Text style={styles.cardInfo}>Faça uma consulta  com  data e hora marcadas.</Text>
+                    </CardItem>
+                  </Card>
+                </Touchable>
+              </View>
+
+              <View style={styles.rowCard}>
+
+                {/* BOTÃO CARTEIRA VACINAÇÃO */}
+                <Touchable foreground={Touchable.Ripple(styles.cardButton3.backgroundColor)} style={styles.touchable}>
+                  <Card style={styles.cardButton3}>
+                    <CardItem style={styles.cardTitleContent} backgroundColor={styles.cardButton3.backgroundColor}>
+                      <Text style={styles.cardTitle}>Vacinação</Text>
+                    </CardItem>
+                    <CardItem style={styles.cardIconItemContent} backgroundColor={styles.cardButton3.backgroundColor}>
+                      <Image style={styles.cardIconItem} source={require('../resources/images/id-card.png')} resizeMode='center' />
+                    </CardItem>
+                    <CardItem style={styles.cardInfoContent} backgroundColor={styles.cardButton3.backgroundColor}>
+                      <Text style={styles.cardInfo}>Abra  sua  carteira  de vacinação digital</Text>
+                    </CardItem>
+                  </Card>
+                </Touchable>
+
+                {/* BOTÃO BUSCAR GPS */}
+                <Touchable foreground={Touchable.Ripple(styles.cardButton4.backgroundColor)} style={styles.touchable}>
+                  <Card style={styles.cardButton4}>
+                    <CardItem style={styles.cardTitleContent} backgroundColor={styles.cardButton4.backgroundColor}>
+                      <Text style={styles.cardTitle}>Unidades</Text>
+                    </CardItem>
+                    <CardItem style={styles.cardIconItemContent} backgroundColor={styles.cardButton4.backgroundColor}>
+                      <Image style={styles.cardIconItem} source={require('../resources/images/map.png')} resizeMode='center' />
+                    </CardItem>
+                    <CardItem style={styles.cardInfoContent} backgroundColor={styles.cardButton4.backgroundColor}>
+                      <Text style={styles.cardInfo}>Faça uma busca de GPS por unidades de saúde mais proxima a você.</Text>
+                    </CardItem>
+                  </Card>
+                </Touchable>
+
+              </View>
             </View>
 
-            <View style={styles.rowCard}>
-
-              {/* BOTÃO CARTEIRA VACINAÇÃO */}
-              <Touchable foreground={Touchable.Ripple(styles.cardButton3.backgroundColor)} style={styles.touchable}>
-                <Card style={styles.cardButton3}>
-                  <CardItem style={styles.cardTitleContent} backgroundColor={styles.cardButton3.backgroundColor}>
-                    <Text style={styles.cardTitle}>Vacinação</Text>
-                  </CardItem>
-                  <CardItem style={styles.cardIconItemContent} backgroundColor={styles.cardButton3.backgroundColor}>
-                     <Image style={styles.cardIconItem} source={require('../resources/images/id-card.png')} resizeMode='center' />
-                  </CardItem>
-                  <CardItem style={styles.cardInfoContent} backgroundColor={styles.cardButton3.backgroundColor}>
-                    <Text style={styles.cardInfo}>Abra  sua  carteira  de vacinação digital</Text>
-                  </CardItem>
-                </Card>
-              </Touchable>
-
-              {/* BOTÃO BUSCAR GPS */}
-              <Touchable foreground={Touchable.Ripple(styles.cardButton4.backgroundColor)} style={styles.touchable}>
-                <Card style={styles.cardButton4}>
-                  <CardItem style={styles.cardTitleContent} backgroundColor={styles.cardButton4.backgroundColor}>
-                    <Text style={styles.cardTitle}>Unidades</Text>
-                  </CardItem>
-                  <CardItem style={styles.cardIconItemContent} backgroundColor={styles.cardButton4.backgroundColor}>
-                     <Image style={styles.cardIconItem} source={require('../resources/images/map.png')} resizeMode='center' />
-                  </CardItem>
-                  <CardItem style={styles.cardInfoContent} backgroundColor={styles.cardButton4.backgroundColor}>
-                    <Text style={styles.cardInfo}>Faça uma busca de GPS por unidades de saúde mais proxima a você.</Text>
-                  </CardItem>
-                </Card>
-              </Touchable>
-
-            </View>
           </View>
 
-        </View>
 
-
-      </Container>
+        </Container>
+      </Sidebar>
     )
   }
 
-// FUNCTIONS
+  // FUNCTIONS
 
 }
 
@@ -219,9 +339,45 @@ const styles = StyleSheet.create({
   },
   cardInfo: {
     fontFamily: 'Manjari Regular',
-    fontSize:18,
+    fontSize: 18,
     color: '#fff',
     textAlign: 'justify'
+  },
+  leftSideBar: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
+  listItem: {
+
+  },
+  leftViewAppName: {
+    position: 'relative',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    height: 100
+  },
+  leftViewAppNameText: {
+    fontSize: 50,
+    fontFamily: 'Lobster Regular',
+    color: '#303030'
+  },
+  leftMenuIcon: {
+    position: 'relative',
+    height: 30,
+    width: 30
+  },
+  listSeparator: {
+    
+  }, 
+  listSeparatorText: {
+    fontSize: 20,
+    color: '#505050'
+  },
+  listText: {
+    color: '#505050',
+    fontSize: 20,
+    fontFamily: 'Manjari Regular',
+    fontWeight: 'bold' 
   }
 })
 export default MainForm
