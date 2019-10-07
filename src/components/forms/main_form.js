@@ -40,7 +40,7 @@ class MainForm extends Component {
                     <Text style={styles.listText}>Dados Pessoais</Text>
                   </Body>
                   <Right>
-                    <Icon active name="arrow-forward" />
+                    <Icon type="AntDesign" active name="right" />
                   </Right>
                 </ListItem>
               </Touchable>
@@ -56,7 +56,7 @@ class MainForm extends Component {
                     <Text style={styles.listText}>Consultas Agendadas</Text>
                   </Body>
                   <Right>
-                    <Icon active name="arrow-forward" />
+                  <Icon type="AntDesign" active name="right" />
                   </Right>
                 </ListItem>
               </Touchable>
@@ -76,7 +76,7 @@ class MainForm extends Component {
                     <Text style={styles.listText}>Ler Código QR</Text>
                   </Body>
                   <Right>
-                    <Icon active name="arrow-forward" />
+                  <Icon type="AntDesign" active name="right" />
                   </Right>
                 </ListItem>
               </Touchable>
@@ -92,7 +92,7 @@ class MainForm extends Component {
                     <Text style={styles.listText}>Localização</Text>
                   </Body>
                   <Right>
-                    <Icon active name="arrow-forward" />
+                  <Icon type="AntDesign" active name="right" />
                   </Right>
                 </ListItem>
               </Touchable>
@@ -108,7 +108,7 @@ class MainForm extends Component {
                     <Text style={styles.listText}>Notificações</Text>
                   </Body>
                   <Right>
-                    <Icon active name="arrow-forward" />
+                  <Icon type="AntDesign" active name="right" />
                   </Right>
                 </ListItem>
               </Touchable>
@@ -124,7 +124,7 @@ class MainForm extends Component {
                     <Text style={styles.listText}>Configurações</Text>
                   </Body>
                   <Right>
-                    <Icon active name="arrow-forward" />
+                  <Icon type="AntDesign" active name="right" />
                   </Right>
                 </ListItem>
               </Touchable>
