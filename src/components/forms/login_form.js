@@ -1,143 +1,108 @@
 import React, { Component } from 'react'
 import { TextInputMask } from 'react-native-masked-text'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert, Button, StatusBar, Image } from 'react-native'
+import { View, Text, Navigator, AppRegistry, StyleSheet, Event, TextInput, TouchableOpacity, Animated, Keyboard, KeyboardAvoidingView, Dimensions, Alert, Button, StatusBar, Image, PixelRatio, Platform } from 'react-native'
+import { Toast } from "native-base";
 import PropTypes from 'prop-types'
 import { CheckBox } from 'react-native-elements'
+import Touchable from 'react-native-platform-touchable';
 
+import {
+  APP_DEFAULT_COLOR_1,
+  APP_DEFAULT_COLOR_2,
+  APP_DEFAULT_COLOR_3,
+  APP_DEFAULT_COLOR_4,
+  APP_STATUS_BAR_COLOR_2,
+  APP_TEXT_COLOR_WHITE
+} from '../theme/main_theme';
+
+import {
+  APP_REQUEST_LOGIN_SERVER,
+  APP_VALIDATOR_ACCESS
+} from '../settings/app_settings'
+
+import { styles } from './styles/style'
+
+export var cpf = '', cns = '';
 
 /**
 * @author Antonio Souza
-* @class Login Form
 **/
-class LoginForm extends Component {
-  state = {}
-
-  render() {
-    const { container } = styles
-    return (
-      <View style={container}>
-        <KeyboardAvoidingView behavior="padding" enabled>
-          <View style={styles.loginInitViewContainer}>
-            <Text style={styles.loginInitTopAppNameText}>+ Saúde</Text>
-          </View>
-          <View style={styles.loginContainer}>
-            <View style={styles.inputs}>
-              <View style={styles.input}>
-                <TextInputMask style={styles.inputText}
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  keyboardType='decimal-pad'
-                  returnKeyType="next"
-                  placeholder='Digite seu CPF'
-                  placeholderTextColor='#c7c7c7'
-                  type={'cpf'}
-                  value={this.state.cpf}
-                  onChangeText={text => {
-                    this.setState({
-                      cpf: text
-                    })
-                  }}
-
-                  ref={(ref) => this.cpfField = ref}
-                //onSubmitEditing={() => verifyCpf()}
-                />
-              </View>
-              <View style={styles.input}>
-                <TextInput style={styles.inputText}
-                  ref={(input) => this.cpfInput = input}
-                  autoCorrect={false}
-                  keyboardType='decimal-pad'
-                  returnKeyType="go"
-                  placeholder='Digite o número SUS'
-                  placeholderTextColor='#c7c7c7' />
-              </View>
-
-
-              <TouchableOpacity style={styles.buttonNext} >
-                <Text style={styles.buttonNextText}>Continuar</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonLoginError} >
-                <Text style={styles.buttonLoginErrorText}>Não consigo me conectar</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.bottomPanel}>
-            </View>
-          </View>
-        </KeyboardAvoidingView>
+const LoginForm = ({ navigation }) => (
+  <KeyboardAvoidingView
+    style={styles.container}
+    behavior={Platform.select({
+      ios: 'padding',
+      android: '',
+    })}
+    enabled={false}
+  >
+    <StatusBar backgroundColor={APP_DEFAULT_COLOR_3} barStyle="light-content" />
+    <View style={styles.loginInitViewContainer}>
+        <Text style={styles.loginInitTopAppTitleText}><Text style={styles.mais}>+</Text> Saúde</Text>
+        <Text style={styles.loginInitTopAppSubTitleText}>Para começar, entre com seu CPF e seu número do S.U.S</Text>
       </View>
 
-    )
+    <View style={styles.inputContent}>
+      <TextInputMask
+        style={styles.inputText}
+        // ref={(input) => this.cpf = input}
+        autoCapitalize="none"
+        autoCorrect={false}
 
-    // function verifyCpf() {
-    //   const cpfIsValid = this.cpfField.isValid()
-    //   if(cpfIsValid){
-    //     this.cpfInput.focus()
-    //   } else {
-    //     this.cpfInput.style={};
-    //   }
-    // }
 
+        keyboardType='decimal-pad'
+        returnKeyType="next"
+        placeholder='Digite seu CPF'
+        placeholderTextColor='#c7c7c7'
+        type={'cpf'}
+        // value={this.state.cpf}
+        maxLength={14}
+      // onChangeText={text => {
+      //   this.setState({
+      //     cpf: text
+      //   })
+      // }}
+      />
+
+      <TextInputMask
+        style={styles.inputText}
+        // ref={(ref) => this.cns = ref}
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType='decimal-pad'
+        returnKeyType="go"
+        placeholder='Digite o número SUS'
+        placeholderTextColor='#c7c7c7'
+        type={'custom'}
+        options={{
+          mask: '999.9999.9999.9999'
+        }}
+        // 
+        maxLength={18}
+      // value={this.state.cns}
+      />
+      <Touchable onPress={() => this.procceedLogin()} style={styles.buttonNext} foreground={Touchable.Ripple('#3399FF')}>
+        <Text style={styles.buttonNextText}>Continuar</Text>
+      </Touchable>
+
+      <Touchable style={styles.buttonLoginError} foreground={Touchable.Ripple('#3399FF')}>
+        <Text style={styles.buttonLoginErrorText}>Não consigo me conectar</Text>
+      </Touchable>
+
+      {/* <TouchableOpacity style={styles.bottomButtons} >
+            <Text style={styles.bottomButtonsText}>Termos de uso</Text>
+            <Text style={styles.bottomButtonsText}>Produto Inovador</Text>
+            <Text style={styles.bottomButtonsText}>Versão: 1.0b</Text>
+          </TouchableOpacity> */}
+    </View>
+  </KeyboardAvoidingView>
+)
+
+LoginForm.navigationOptions = {
+  title: '',
+  headerStyle: {
+    height: 0
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 0,
-    backgroundColor: '#fff',
-  },
-  loginInitViewContainer: {
-    position: 'relative',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 100,
-    marginTop: 50
-  },
-  loginInitTopAppNameText: {
-    fontFamily: 'Manjari Regular',
-    fontSize: 50,
-    color: '#8000FF'
-  },
-  loginContainer: {
-    backgroundColor: '#fff',
-    height: '100%',
-  },
-  input: {
-    padding: 25,
-    justifyContent: 'center',
-    width: '100%',
-    backgroundColor: '#fff',
-  },
-  inputText: {
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderBottomColor: '#8000FF',
-    width: '100%',
-    textAlign: 'center'
-  },
-  buttonNext: {
-    backgroundColor: '#8000FF',
-    paddingVertical: 15,
-    margin: 25,
-    borderRadius: 20
-  },
-  buttonNextText: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: '700',
-    fontSize: 30
-  },
-  buttonLoginErrorText: {
-    color: '#8000FF',
-    textAlign: 'center',
-    fontWeight: '700'
-  },
-  bottomPanel: {
-    backgroundColor: '#fff',
-    flex: 1
-  }
-})
 
 export default LoginForm;

@@ -10,6 +10,14 @@ const APP_STATUS_BAR_COLOR_2 = '#fff';
 
 const APP_TEXT_COLOR_WHITE = '#404040';
 
+const APP_REQUEST_LOGIN_SERVER = {
+  'address': '127.0.0.1/server/mspirn/app/auth/'
+}
+
+const APP_VALIDATOR_ACCESS_TOKEN = '08ee4c0ad551ba3d969fecc510092db0';
+const APP_VALIDATOR_CPF_TOKEN = 'http://geradorapp.com/api/v1/cpf/validate/{NUM}?08ee4c0ad551ba3d969fecc510092db0';
+const APP_VALIDATOR_CNS_TOKEN = 'http://geradorapp.com/api/v1/cns/validate/{NUM}?08ee4c0ad551ba3d969fecc510092db0';
+
 export {
   APP_DEFAULT_COLOR_1,
   APP_DEFAULT_COLOR_2,
@@ -18,5 +26,9 @@ export {
   APP_DEFAULT_COLOR_5,
   APP_STATUS_BAR_COLOR_1,
   APP_STATUS_BAR_COLOR_2,
-  APP_TEXT_COLOR_WHITE
+  APP_TEXT_COLOR_WHITE,
+  APP_REQUEST_LOGIN_SERVER,
+  APP_VALIDATOR_ACCESS_TOKEN,
+  APP_VALIDATOR_CPF_TOKEN,
+  APP_VALIDATOR_CNS_TOKEN
 }
